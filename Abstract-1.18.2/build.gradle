@@ -1,0 +1,13 @@
+archivesBaseName = "Abstract-1.18.2"
+
+loom {
+}
+
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.18.2"
+    mappings "net.fabricmc:yarn:1.18.2+build.${project.yarn_mappings_1182}:v2"
+}
