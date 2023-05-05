@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * EmptyEvent is used to debug events by essentially turning them off by assigning them this class.
+ * An empty implementation of {@link AbstractEvent}. Typically used for debug purposes.
  */
 @SuppressWarnings("unused")
 public class EmptyEvent<T> implements AbstractEvent<T> {

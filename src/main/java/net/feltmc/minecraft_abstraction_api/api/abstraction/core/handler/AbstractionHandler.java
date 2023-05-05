@@ -2,6 +2,7 @@ package net.feltmc.minecraft_abstraction_api.api.abstraction.core.handler;
 
 import net.feltmc.minecraft_abstraction_api.api.events.CapableEvent;
 import net.feltmc.minecraft_abstraction_api.api.events.AbstractEvent;
+import net.feltmc.minecraft_abstraction_api.api.abstraction.def.Environment;
 import net.feltmc.minecraft_abstraction_api.util.obj_holders.MutableObjectHolder;
 
 import java.util.Arrays;
@@ -38,12 +39,12 @@ public class AbstractionHandler<A extends MethodAbstractionApi> {
 
         event.fire(abstractionApiHolder);
 
-        this.directory = abstractionInstanceGetter.apply(abstractionApiHolder.heldObj);
+        this.directory = abstractionInstanceGetter.apply(abstractionApiHolder.getHeldObj());
         this.abstractionModIds = abstractionModIds;
         this.environment = environment;
         this.entrypointName = entrypointName;
 
-        if (abstractionApiHolder.heldObj == null) {
+        if (abstractionApiHolder.getHeldObj() == null) {
             throw new NullPointerException("Abstraction failed for " + this);
         }
     }
@@ -52,10 +53,5 @@ public class AbstractionHandler<A extends MethodAbstractionApi> {
     public String toString() {
         return "AbstractionHandler[Env={" + environment +"}, ENTRYPOINT_NAME={" + entrypointName +"}, " +
                 "ENTRYPOINT_MODIDS" + "={" + Arrays.toString(abstractionModIds.toArray()) + "}]@" + hashCode();
-    }
-
-    public enum Environment {
-        CLIENT,
-        @SuppressWarnings("unused") COMMON
     }
 }

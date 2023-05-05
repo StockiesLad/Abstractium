@@ -2,7 +2,7 @@ package net.feltmc.minecraft_abstraction_api.api.abstraction.core.handler;
 
 import net.feltmc.minecraft_abstraction_api.api.abstraction.core.versioning.SupportedVersions;
 import net.feltmc.minecraft_abstraction_api.api.abstraction.core.versioning.VersionProvider;
-import net.feltmc.minecraft_abstraction_api.api.abstraction.core.versioning.VersionUtil.GameSpecific;
+import net.feltmc.minecraft_abstraction_api.api.abstraction.core.versioning.VersionUtil;
 
 public interface AbstractionDirectory<T extends MethodAbstractionApi> extends VersionProvider, SupportedVersions {
     @Override
@@ -15,7 +15,7 @@ public interface AbstractionDirectory<T extends MethodAbstractionApi> extends Ve
         return getAbstractedEntries().getSupportedVersions();
     }
 
-    GameSpecific getVersionUtil();
+    VersionUtil getVersionUtil();
 
     T getAbstractedEntries();
 }

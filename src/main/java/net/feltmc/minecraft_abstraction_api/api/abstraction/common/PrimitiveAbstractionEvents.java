@@ -1,9 +1,9 @@
-package net.feltmc.minecraft_abstraction_api.def_impl.events.common;
+package net.feltmc.minecraft_abstraction_api.api.abstraction.common;
 
 import net.feltmc.minecraft_abstraction_api.util.obj_holders.MutableObjectHolder;
 import net.feltmc.minecraft_abstraction_api.api.events.AbstractEvent;
 import net.feltmc.minecraft_abstraction_api.api.events.CapableEvent;
-import net.feltmc.minecraft_abstraction_api.def_impl.events.common.context.EmptyContext;
+import net.feltmc.minecraft_abstraction_api.api.abstraction.common.context.EmptyContext;
 
 public interface PrimitiveAbstractionEvents {
     static void init() {}

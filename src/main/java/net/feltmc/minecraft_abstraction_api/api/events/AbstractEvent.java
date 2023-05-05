@@ -1,6 +1,5 @@
 package net.feltmc.minecraft_abstraction_api.api.events;
 
-import io.github.bumblesoftware.fastload.client.FLClientEvents;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
@@ -9,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A basic event system that's able to dynamically & statically registerBaseClient/remove,
- * has a builtin priority system & is easy to understand.
- * @param <Context> used for custom event params. Refer to {@link FLClientEvents}
- *           for examples.
+ * An event class that provides all the necessary tools to create the exact event you need.
+ * @param <Context> used for custom event params.
  */
 public interface AbstractEvent<Context> {
     String GENERIC_LOCATION = "generic";
@@ -239,8 +236,7 @@ public interface AbstractEvent<Context> {
      * Common storage type for {@link AbstractEvent}
      * @param argsHolder Holds an array of {@link EventArgs} attached to a key of a given priority.
      * @param priorityHolder Holds all the priorities that are used to access a specific arraylist of events to onElement through.
-     * @param <Ctx> used for custom event params. Refer to {@link FLClientEvents FLEvents}
-     *           for examples.
+     * @param <Ctx> used for custom event params.
      */
     record EventHolder<Ctx> (
             Long2ObjectMap<List<EventArgs<Ctx>>> argsHolder,
@@ -250,8 +246,7 @@ public interface AbstractEvent<Context> {
     /**
      * Event args holds a specific implementation that is added to the main registry for {@link AbstractEvent}
      * to onElement through upon firing.
-     * @param <Ctx> used for custom event params. Refer to {@link FLClientEvents FLEvents}
-     *           for examples.
+     * @param <Ctx> used for custom event params.
      */
     @FunctionalInterface
     interface EventArgs<Ctx> {

@@ -1,6 +1,5 @@
 package net.feltmc.minecraft_abstraction_api.api.events;
 
-import io.github.bumblesoftware.fastload.client.FLClientEvents;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
@@ -9,9 +8,8 @@ import java.util.List;
 
 
 /**
- * An event class that provides all the necessary tools to create the exact event you need.
- * @param <Context> used for custom event params. Refer to {@link FLClientEvents FLClientEvents}
- *           for examples.
+ * A complete implementation of {@link AbstractEvent}
+ * @param <Context> used for custom event params.
  */
 public class CapableEvent<Context> implements AbstractEvent<Context> {
     private final Comparator<Long> order;

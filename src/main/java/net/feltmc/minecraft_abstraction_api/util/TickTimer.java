@@ -1,13 +1,13 @@
 package net.feltmc.minecraft_abstraction_api.util;
 
+import net.feltmc.minecraft_abstraction_api.api.abstraction.def.Environment;
 import net.feltmc.minecraft_abstraction_api.api.events.AbstractEvent.StableEventArgs;
-import net.feltmc.minecraft_abstraction_api.def_impl.events.common.location.BooleanEventLocations.MinecraftEnvironment;
 import net.feltmc.minecraft_abstraction_api.util.obj_holders.MutableObjectHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.feltmc.minecraft_abstraction_api.def_impl.events.common.PrimitiveAbstractionEvents.BOOLEAN_EVENT;
+import static net.feltmc.minecraft_abstraction_api.api.abstraction.common.PrimitiveAbstractionEvents.BOOLEAN_EVENT;
 
 /**
  * {@link java.util.Timer Timer} doesn't work on minecraft as it runs on another thread. This timer
@@ -18,7 +18,7 @@ public final class TickTimer {
     private int remainingTime = 0;
 
     @SuppressWarnings("unused")
-    public TickTimer(final MinecraftEnvironment env) {
+    public TickTimer(final Environment env) {
         tasks = new ArrayList<>();
         final StableEventArgs<MutableObjectHolder<Boolean>> args = (eventContext, eventLocal, eventArgs) -> {
             if (remainingTime > 0)

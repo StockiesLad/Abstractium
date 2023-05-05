@@ -5,7 +5,7 @@ import net.feltmc.minecraft_abstraction_api.api.abstraction.core.versioning.Vers
 import net.feltmc.minecraft_abstraction_api.api.abstraction.core.handler.MethodAbstractionApi;
 
 public class MinecraftAbstraction<A extends MethodAbstractionApi> implements AbstractionDirectory<A> {
-    private final VersionUtil.GameSpecific versionUtil;
+    private final VersionUtil versionUtil;
     private final A abstractedClient;
 
     public MinecraftAbstraction(A clientCalls) {
@@ -14,7 +14,7 @@ public class MinecraftAbstraction<A extends MethodAbstractionApi> implements Abs
     }
 
     @Override
-    public VersionUtil.GameSpecific getVersionUtil() {
+    public VersionUtil getVersionUtil() {
         return versionUtil;
     }
 
