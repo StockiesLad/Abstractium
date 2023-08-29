@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "minecraft_abstraction_api",
+  "id": "abstractium",
   "version": "${version}",
 
-  "name": "Minecraft Abstraction Api",
-  "description": "Load your world at lightning speed!",
+  "name": "Abstractium",
+  "description": "A tool to provide abstracted access to a dependency. It's intended purpose is to allow the same code to work with multiple different dependencies and versions of those given dependencies. This allows a mod to theoretically work with multiple different minecraft versions and even modloaders.",
   "authors": [
     "StockiesLad [Main dev]",
     "Feltmc [Organisation]"
@@ -19,15 +19,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.feltmc.minecraft_abstraction_api.init.MinecraftCommonAbstraction"
+      "net.feltmc.abstractium.init.AbstractiumCommon"
     ],
     "client" : [
-      "net.feltmc.minecraft_abstraction_api.init.MinecraftClientAbstraction"
+      "net.feltmc.abstractium.init.AbstractiumClient"
     ]
   },
-  "mixins": [
-    "minecraft_abstraction_api.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.14.10",
     "minecraft": ">=1.18.2",

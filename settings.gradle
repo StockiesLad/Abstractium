@@ -9,9 +9,4 @@ pluginManagement {
     }
 }
 include "Abstract-1.18.2"
-include "Abstract-1.19"
-include "Abstract-1.19.1"
-include "Abstract-1.19.2"
-include "Abstract-1.19.3"
-include "Abstract-1.19.4"
 
