@@ -8,5 +8,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-include "Abstract-1.18.2"
 

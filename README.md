@@ -1,36 +1,21 @@
-# Short explanation
-Fastload is a *relatively* simple mod that changes some crucial parts of world loading to speed it up.
+# Description
+Abstractium is a moderately simple mod that provides tools to abstract interactive code between a mod and 
+given dependency. It was made as a personal api that I can use to make my mods support multiple versions 
+simultaneously by abstracting calls to minecraft code.
 
-# Environments
-- Client (Optional)
-- Server (Optional)
+# Structure/Progress
+Currently, as of 8/31/2023, the api is going to standalone; containing no embedded abstractions or wrapped
+code.
 
-# Credits
-- StockiesLad (Owner)
-- JoostMSoftware (Co-Owner)
-- AbdElAziz333 (Forge)
-- VidTu (Ksyxis (Idea))
-- kennytv (Forcecloseloadingscreen (Code))
+There are plans to create a solid foundation for a bunch of abstractions for mods to use, starting with a
+registration api. Then old code will be wrapped, using the abstractions to ensure compatibility.
 
-# Features
-- 441 Pre-generator: Entirely yanks it to sync chunk generation with chunk rendering.
-- Loading Screens: Cancellable (Configurable)
-- Rendering: Pre-rendering Phase (Configurable)
-
-# Suggested With
-- C2ME: Optimises chunk generation.
-- Sodium: Optimises chunk rendering.
-
-# Explanation
-The 441 chunk loading engine is pretty much what the name is. The reason for it being 441 chunks is that
-it generates chunks in a 10 chunk radius as a square. So multiply that by 2, add 1 (because you are standing
-on a chunk) and square it. Fastload removes this *feature* as it is a huge waste of time. Instead, it will
-only load 1 chunk (the spawn chunk) and loads the rest of the spawn region during early rendering.
-
-Along with that, it also replaces some of the loading screens with its own implementation. This pretty much
-allows rendering to begin immediately instead of it being halted until the player spawn packet is received.
+Now here's an important thing to keep in mind, please don't get too excited and think this is the
+beginning of some revolutionary api that'll let you play mods from 1.7.10 all the way to the latest version.
+My time is limited, people have a habit of taking more than they give when it comes to things like this and
+for the foreseeable future it will remain in the state it is now unless people contribute.
 
 # Links
-- Modrinth: https://modrinth.com/mod/fastload
-- Curseforge: https://www.curseforge.com/minecraft/mc-mods/fastload
+- Modrinth: N/A
+- Curseforge: N/A
 - Discord: https://discord.gg/fMSnenNSXM
