@@ -15,7 +15,7 @@
   },
 
   "license": "LGPL-3.0",
-  "icon": "assets/minecraft_abstraction_api/icon.png",
+  "icon": "assets/abstractium/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -26,8 +26,8 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.14.10",
-    "minecraft": ">=1.18.2",
+    "fabricloader": "*",
+    "minecraft": "*",
     "java": ">=17"
   }
 }
