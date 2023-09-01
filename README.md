@@ -16,6 +16,6 @@ My time is limited, people have a habit of taking more than they give when it co
 for the foreseeable future it will remain in the state it is now unless people contribute.
 
 # Links
-- Modrinth: N/A
-- Curseforge: N/A
+- Modrinth: https://modrinth.com/mod/abstractium
+- Curseforge: https://legacy.curseforge.com/minecraft/mc-mods/abstractium
 - Discord: https://discord.gg/fMSnenNSXM
