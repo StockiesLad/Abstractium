@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.impl.event.events;
+package net.feltmc.abstractium.impl.event;
 
 import net.feltmc.abstractium.api.event.core.AbstractEvent;
 import net.feltmc.abstractium.api.event.core.StableEventArgs;
