@@ -1,5 +1,7 @@
 package net.feltmc.abstractium.util.obj_holders;
 
+import java.util.function.Function;
+
 /**
  * It holds objects to allow modification through method calls.
  * @param <T> any object.
@@ -20,8 +22,8 @@ public class MutableObjectHolder<T> extends ObjectHolder<T> {
     }
 
     @Override
-    public ObjectHolder<T> mutateHeldObj(T newObj) {
-        heldObj = newObj;
+    public ObjectHolder<T> mutateHeldObj(Function<T, T> mutatedObj) {
+        heldObj = mutatedObj.apply(heldObj);
         return this;
     }
 }

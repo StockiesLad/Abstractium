@@ -4,7 +4,5 @@ import net.fabricmc.api.ClientModInitializer;
 
 public class AbstractiumClient implements ClientModInitializer {
     @Override
-    public void onInitializeClient() {
-
-    }
+    public void onInitializeClient() {}
 }

@@ -1,5 +1,7 @@
 package net.feltmc.abstractium.util.obj_holders;
 
+import java.util.function.Function;
+
 public class ImmutableObjectHolder<T> extends ObjectHolder<T> {
     private final T heldObj;
 
@@ -17,7 +19,7 @@ public class ImmutableObjectHolder<T> extends ObjectHolder<T> {
     }
 
     @Override
-    public ObjectHolder<T> mutateHeldObj(T newObj) {
-        return new ImmutableObjectHolder<>(heldObj);
+    public ObjectHolder<T> mutateHeldObj(Function<T, T> mutatedObj) {
+        return new ImmutableObjectHolder<>(mutatedObj.apply(heldObj));
     }
 }
