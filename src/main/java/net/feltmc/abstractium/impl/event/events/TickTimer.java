@@ -1,6 +1,5 @@
 package net.feltmc.abstractium.impl.event.events;
 
-import net.feltmc.abstractium.api.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.api.event.core.AbstractEvent;
 import net.feltmc.abstractium.api.event.core.StableEventArgs;
 import net.feltmc.abstractium.impl.event.events.context.EmptyContext;
@@ -16,7 +15,7 @@ public final class TickTimer {
     private final List<Runnable> tasks;
     private int remainingTime = 0;
 
-    public TickTimer(final MinecraftEnvironment env, AbstractEvent<EmptyContext> event) {
+    public TickTimer(final String uniqueEventLocation, AbstractEvent<EmptyContext> event) {
         tasks = new ArrayList<>();
         final StableEventArgs<EmptyContext> args = (eventContext, eventStatus, event1, eventArgs) -> {
             if (remainingTime > 0)
@@ -27,7 +26,7 @@ public final class TickTimer {
                 tasks.clear();
             }
         };
-        event.registerListener(1, env.name().toLowerCase(), args);
+        event.registerListener(1, uniqueEventLocation, args);
     }
 
     /**
