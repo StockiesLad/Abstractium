@@ -1,13 +1,12 @@
-package net.feltmc.abstractium.util;
+package net.feltmc.abstractium.impl.event.events;
 
 import net.feltmc.abstractium.api.abstraction.def.MinecraftEnvironment;
+import net.feltmc.abstractium.api.event.core.AbstractEvent;
 import net.feltmc.abstractium.api.event.core.StableEventArgs;
-import net.feltmc.abstractium.util.obj_holders.MutableObjectHolder;
+import net.feltmc.abstractium.impl.event.events.context.EmptyContext;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static net.feltmc.abstractium.impl.events.common.PrimitiveAbstractionEvents.BOOLEAN_EVENT;
 
 /**
  * {@link java.util.Timer Timer} doesn't work on minecraft as it runs on another thread. This timer
@@ -17,10 +16,9 @@ public final class TickTimer {
     private final List<Runnable> tasks;
     private int remainingTime = 0;
 
-    @SuppressWarnings("unused")
-    public TickTimer(final MinecraftEnvironment env) {
+    public TickTimer(final MinecraftEnvironment env, AbstractEvent<EmptyContext> event) {
         tasks = new ArrayList<>();
-        final StableEventArgs<MutableObjectHolder<Boolean>> args = (eventContext, eventStatus, event, eventArgs) -> {
+        final StableEventArgs<EmptyContext> args = (eventContext, eventStatus, event1, eventArgs) -> {
             if (remainingTime > 0)
                 remainingTime--;
             else if (!tasks.isEmpty()) {
@@ -29,7 +27,7 @@ public final class TickTimer {
                 tasks.clear();
             }
         };
-        BOOLEAN_EVENT.registerListener(1, env.name().toLowerCase(), args);
+        event.registerListener(1, env.name().toLowerCase(), args);
     }
 
     /**

@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.impl.events.common.location;
+package net.feltmc.abstractium.impl.event.events.location;
 
 import net.feltmc.abstractium.api.abstraction.def.MinecraftEnvironment;
 

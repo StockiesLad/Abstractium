@@ -3,12 +3,9 @@ package net.feltmc.abstractium.api.abstraction.core.handler;
 import net.feltmc.abstractium.api.abstraction.core.versioning.VersionUtil;
 import net.feltmc.abstractium.api.abstraction.def.DefaultAbstraction;
 import net.feltmc.abstractium.api.abstraction.def.VersionUtils;
-import net.feltmc.abstractium.api.event.core.AbstractEvent;
-import net.feltmc.abstractium.util.obj_holders.MutableObjectHolder;
 
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Consumer;
 
 public class AbstractionHandlerFactory {
     public static
@@ -38,8 +35,7 @@ public class AbstractionHandlerFactory {
     AbstractionHandler<Abstraction, Environment> minecraftAbstraction(
             final String name,
             final List<String> abstractionModIds,
-            final Environment environment,
-            final Consumer<AbstractEvent<MutableObjectHolder<Abstraction>>> base
+            final Environment environment
     ) {
         return genericAbstraction(name, abstractionModIds, environment, VersionUtils.MINECRAFT);
     }

@@ -1,6 +1,6 @@
-package net.feltmc.abstractium.impl.events.common;
+package net.feltmc.abstractium.impl.event.events;
 
-import net.feltmc.abstractium.impl.events.common.context.EmptyContext;
+import net.feltmc.abstractium.impl.event.events.context.EmptyContext;
 import net.feltmc.abstractium.api.event.core.AbstractEvent;
 import net.feltmc.abstractium.api.event.def.ConcurrentEvent;
 import net.feltmc.abstractium.util.obj_holders.MutableObjectHolder;
