@@ -17,5 +17,5 @@ for the foreseeable future it will remain in the state it is now unless people c
 
 # Links
 - Modrinth: https://modrinth.com/mod/abstractium
-- Curseforge: https://legacy.curseforge.com/minecraft/mc-mods/abstractium
+- Curseforge: https://www.curseforge.com/minecraft/mc-mods/abstractium
 - Discord: https://discord.gg/fMSnenNSXM
