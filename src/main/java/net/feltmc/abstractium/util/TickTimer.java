@@ -1,6 +1,6 @@
 package net.feltmc.abstractium.util;
 
-import net.feltmc.abstractium.api.abstraction.def.Environment;
+import net.feltmc.abstractium.api.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.api.event.core.StableEventArgs;
 import net.feltmc.abstractium.util.obj_holders.MutableObjectHolder;
 
@@ -18,7 +18,7 @@ public final class TickTimer {
     private int remainingTime = 0;
 
     @SuppressWarnings("unused")
-    public TickTimer(final Environment env) {
+    public TickTimer(final MinecraftEnvironment env) {
         tasks = new ArrayList<>();
         final StableEventArgs<MutableObjectHolder<Boolean>> args = (eventContext, eventStatus, event, eventArgs) -> {
             if (remainingTime > 0)

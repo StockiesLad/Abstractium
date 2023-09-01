@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "abstractium",
+  "id": "${modid}",
   "version": "${version}",
 
-  "name": "Abstractium",
+  "name": "${mod_name}",
   "description": "A tool to provide abstracted access to a dependency. It's intended purpose is to allow the same code to work with multiple different dependencies and versions of those given dependencies. This allows a mod to theoretically work with multiple different minecraft versions and even modloaders.",
   "authors": [
     "StockiesLad [Main dev]",
