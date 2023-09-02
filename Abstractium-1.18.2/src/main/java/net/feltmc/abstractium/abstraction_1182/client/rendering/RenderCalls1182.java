@@ -16,6 +16,8 @@ import static com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHe
 public class RenderCalls1182 implements AbstractRenderCalls {
     public static final AbstractiumAccess<AbstractRenderCalls> ACCESS = AbstractiumAccess.create(new RenderCalls1182());
 
+    private RenderCalls1182() {}
+
     @Override
     public void registerTranslucent(Block block) {
         BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getTranslucent());

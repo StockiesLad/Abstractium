@@ -17,6 +17,5 @@ public abstract class AbstractClientCalls implements AbstractionApi<AbstractClie
         return handler;
     }
 
-
     public abstract AbstractRenderCalls getRenderCalls();
 }
