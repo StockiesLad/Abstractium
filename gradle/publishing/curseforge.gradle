@@ -1,7 +1,11 @@
 curseforge {
-    var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\curseforge_token.txt"))
-    apiKey = reader.readLine()
-    reader.close()
+    try {
+        var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\curseforge_token.txt"))
+        apiKey = reader.readLine()
+        reader.close()
+    } catch (FileNotFoundException ignored) {
+        apiKey = "EMPTY_TOKEN"
+    }
     project {
         id = curseforge_id
         changelog = changelog_text

@@ -11,9 +11,6 @@ ext /* -ra properties */ {
 }
 
 tasks.register("publishMod") {
-    //if (plugins.hasPlugin("io.github.p03w.machete"))
-    mustRunAfter(tasks.named("optimizeOutputsOfRemapJar"))
-        dependsOn(tasks.named("optimizeOutputsOfRemapJar"))
     dependsOn(tasks.named("modrinth"))
     dependsOn(tasks.named("curseforge"))
 }

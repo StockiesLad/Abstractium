@@ -1,9 +1,13 @@
 //file:noinspection GroovyAssignabilityCheck
 //file:noinspection GroovyAccessibility
 modrinth {
-    var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\modrinth_token.txt"))
-    token = reader.readLine()
-    reader.close()
+    try {
+        var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\modrinth_token.txt"))
+        token = reader.readLine()
+        reader.close()
+    } catch (FileNotFoundException ignored) {
+        token = "EMPTY_TOKEN"
+    }
     projectId = modrinth_id
     versionNumber = version
     versionName = "${project.mod_name}-${project.version}"
