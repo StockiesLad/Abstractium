@@ -1,7 +1,7 @@
 package net.feltmc.abstractium.init;
 
 import net.fabricmc.api.ModInitializer;
-import net.feltmc.abstractium.api.abstraction.core.versioning.VersionConstants;
+import net.feltmc.abstractium.api.internal.abstraction.def.VersionConstants;
 
 public class AbstractiumCommon implements ModInitializer {
     @Override
