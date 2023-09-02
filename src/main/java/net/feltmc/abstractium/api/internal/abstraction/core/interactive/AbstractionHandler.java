@@ -1,7 +1,6 @@
-package net.feltmc.abstractium.api.internal.abstraction.core.handler;
+package net.feltmc.abstractium.api.internal.abstraction.core.interactive;
 
-import net.feltmc.abstractium.api.external.abstraction.AbstractionApi;
-import net.feltmc.abstractium.api.external.abstraction.AbstractionEntrypoint;
+import net.feltmc.abstractium.api.internal.abstraction.core.versioning.SupportedVersions;
 import net.feltmc.abstractium.api.internal.abstraction.core.versioning.VersionUtil;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 
 import static net.fabricmc.loader.api.FabricLoader.getInstance;
 
-public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction>, Environment extends Enum<Environment>> extends AbstractVersionHandler<Abstraction> {
+public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> implements SupportedVersions {
     public final List<String> abstractionModIds;
     public final Environment environment;
     public final String entrypointName;
@@ -56,14 +55,32 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
 
     }
 
-    @Override
-    protected Abstraction getAbstraction() {
-        return abstraction;
+    public String getVersion() {
+        return versionUtil.providedVersion;
+    }
+
+    public boolean isSupported(final String[] supportedVersions) {
+        for (String supportedVersion : supportedVersions)
+            if (versionUtil.matchesAny(supportedVersion))
+                return true;
+        return false;
+    }
+
+    public boolean isSupported() {
+        return isSupported(getSupportedVersions());
+    }
+
+    public boolean isSupported(final Abstraction abstraction) {
+        return isSupported(getSupportedVersions(abstraction));
     }
 
     @Override
-    protected VersionUtil getVersionUtil() {
-        return versionUtil;
+    public String[] getSupportedVersions() {
+        return abstraction.getSupportedVersions();
+    }
+
+    public String[] getSupportedVersions(final Abstraction abstraction) {
+        return abstraction.getSupportedVersions();
     }
 
     @Override
