@@ -6,4 +6,7 @@ loom {
 dependencies {
     minecraft "com.mojang:minecraft:1.18.2"
     mappings "net.fabricmc:yarn:1.18.2+build.${project.yarn_mappings_1182}:v2"
+    include "com.terraformersmc.terraform-api:terraform-tree-api-v1:${project.terraform_api_version_1182}"
+    include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_api_version_1182}"
+    include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_api_version_1182}"
 }
