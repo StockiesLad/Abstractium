@@ -1,3 +1,7 @@
+-Removed AbstractVersionHandler as it served no purpose to exist
+
+----------
+
 - Multiple things renamed and placed elsewhere.
 - Added AbstractionHandler access to the AbstractionApi class.
 - Nuked unnecessary event usage in entrypoints.
