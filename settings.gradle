@@ -9,3 +9,5 @@ pluginManagement {
     }
 }
 
+include "Abstractium-1.18.2"
+include "Abstractium-Libraries-1.18.2"

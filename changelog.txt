@@ -1,3 +1,7 @@
+-Added framework for implementation.
+
+----------
+
 -Removed AbstractVersionHandler as it served no purpose to exist
 
 ----------

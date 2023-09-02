@@ -1,0 +1,14 @@
+archivesBaseName = "Abstractium-1.18.2"
+
+loom {
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.18.2"
+    mappings "net.fabricmc:yarn:1.18.2+build.${project.yarn_mappings_1182}:v2"
+    //implementation project(path: ":Abstractium-Libraries-1.18.2", configuration: "namedElements")
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fapi_1182}+1.18.2"
+
+    //modImplementation "com.terraformersmc:modmenu:${project.modmenu_1192}"
+}

@@ -15,10 +15,10 @@ modrinth {
     changelog = changelog_text
     uploadFile = file("build//libs//${project.archivesBaseName}-${project.version}.jar")
 
-    afterEvaluate {
+    /*afterEvaluate {
         if (plugins.hasPlugin("io.github.p03w.machete"))
             tasks.modrinth.dependsOn(tasks.named("optimizeOutputsOfRemapJar"))
-    }
+    }*/
     gameVersions = [
             "1.20.1",
             "1.20",

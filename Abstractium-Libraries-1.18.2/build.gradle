@@ -1,0 +1,9 @@
+archivesBaseName = "AbstractLibraries-1.18.2"
+version = project.mod_libraries_version
+loom {
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.18.2"
+    mappings "net.fabricmc:yarn:1.18.2+build.${project.yarn_mappings_1182}:v2"
+}

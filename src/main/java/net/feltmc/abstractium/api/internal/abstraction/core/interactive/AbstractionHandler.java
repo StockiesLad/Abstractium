@@ -9,6 +9,7 @@ import java.util.List;
 
 import static net.fabricmc.loader.api.FabricLoader.getInstance;
 
+@SuppressWarnings({"unchecked", "TypeParameterHidesVisibleType"})
 public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> implements SupportedVersions {
     public final List<String> abstractionModIds;
     public final Environment environment;
@@ -25,6 +26,11 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
         final List<Abstraction> abstractions = new ArrayList<>();
         final String entrypointName = namespace.toLowerCase() + "_" + environment.name().toLowerCase();
 
+        this.abstractionModIds = abstractionModIds;
+        this.environment = environment;
+        this.entrypointName = entrypointName;
+        this.versionUtil = versionUtil;
+
         getInstance().getEntrypointContainers(entrypointName, AbstractionEntrypoint.class)
                 .forEach(container -> abstractionModIds.forEach(abstractionModId -> {
                     if (container.getProvider().getMetadata().getId().equals(abstractionModId)) {
@@ -39,11 +45,6 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
             if (isSupported(supportedAbstraction))
                 supportedAbstractions.add(supportedAbstraction);
         }
-
-        this.abstractionModIds = abstractionModIds;
-        this.environment = environment;
-        this.entrypointName = entrypointName;
-        this.versionUtil = versionUtil;
 
         if (supportedAbstractions.size() == 0) {
             throw new NullPointerException("There aren't any supported abstractions for " + this);
@@ -81,6 +82,13 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
 
     public String[] getSupportedVersions(final Abstraction abstraction) {
         return abstraction.getSupportedVersions();
+    }
+
+    public void identityCall() {}
+
+    public <Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>>
+    AbstractionHandler<Abstraction, Environment> generify() {
+        return (AbstractionHandler<Abstraction, Environment>) this;
     }
 
     @Override

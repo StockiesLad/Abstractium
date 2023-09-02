@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "${modid}_1182",
+  "version": "${version}",
+
+  "name": "${mod_name} 1.18.2",
+  "description": "Mappings to get ${mod_name} running on 1.18.2.",
+  "authors": [
+    "StockiesLad [Owner]"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/terrains",
+    "sources": "https://github.com/FluffyBumblebees/Terrains",
+    "issues": "https://github.com/FluffyBumblebees/Terrains/issues",
+    "wiki": "https://github.com/FluffyBumblebees/Terrains/wiki",
+    "discord": "https://discord.gg/fMSnenNSXM"
+  },
+
+  "license": "LGPL-3.0",
+  "icon": "assets/${modid}/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "${modid}_client": [
+      "net.feltmc.abstractium.abstraction_1182.client.ClientEntrypoint1182"
+    ],
+    "${modid}_common": [
+      "net.feltmc.abstractium.abstraction_1182.common.CommonEntrypoint1182"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*",
+    "java": ">=17"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": {
+        "id": "${modid}"
+      }
+    }
+  }
+}
