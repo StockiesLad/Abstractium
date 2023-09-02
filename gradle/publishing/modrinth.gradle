@@ -1,0 +1,32 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAccessibility
+modrinth {
+    var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\modrinth_token.txt"))
+    token = reader.readLine()
+    reader.close()
+    projectId = modrinth_id
+    versionNumber = version
+    versionName = "${project.mod_name}-${project.version}"
+    versionType = release_type
+    changelog = changelog_text
+    uploadFile = file("build//libs//${project.archivesBaseName}-${project.version}.jar")
+
+    afterEvaluate {
+        if (plugins.hasPlugin("io.github.p03w.machete"))
+            tasks.modrinth.dependsOn(tasks.named("optimizeOutputsOfRemapJar"))
+    }
+    gameVersions = [
+            "1.20.1",
+            "1.20",
+            "1.19.4",
+            "1.19.3",
+            "1.19.2",
+            "1.19.1",
+            "1.19",
+            "1.18.2"
+    ]
+    loaders = [
+            "fabric",
+            "quilt"
+    ]
+}

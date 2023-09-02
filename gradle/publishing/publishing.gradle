@@ -1,0 +1,26 @@
+//file:noinspection GroovyAssignabilityCheck
+import java.nio.file.Files
+
+ext /* -ra properties */ {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(file("gradle/publishing/publishing.properties")))
+    properties.forEach((k, v) -> set(k, v))
+
+    published_version_name = "${project.archivesBaseName}-${project.version}"
+    changelog_text = getChangelog(file(changelog_file))
+}
+
+tasks.register("publishMod") {
+    //if (plugins.hasPlugin("io.github.p03w.machete"))
+    mustRunAfter(tasks.named("optimizeOutputsOfRemapJar"))
+        dependsOn(tasks.named("optimizeOutputsOfRemapJar"))
+    dependsOn(tasks.named("modrinth"))
+    dependsOn(tasks.named("curseforge"))
+}
+
+static String getChangelog(File changelogFile) {
+    return Files.readString(changelogFile.toPath()).split("----------")[0].trim()
+}
+
+apply from: "gradle/publishing/modrinth.gradle"
+//apply from: "gradle/publishing/curseforge.gradle"

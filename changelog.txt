@@ -1,0 +1,13 @@
+- Removed MultiAbstractionHandler as it forces unsafe generification.
+- Modified TickTimer to use Strings also take in a event in the constructor param.
+
+----------
+
+- Generification of environments
+- Made registration easier
+- Removed ability to register a set of abstractions in the same method call.
+- Added the fastload class loading improvements.
+
+----------
+
+Fixed objectholders

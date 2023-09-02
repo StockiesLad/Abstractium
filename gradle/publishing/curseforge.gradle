@@ -1,0 +1,27 @@
+curseforge {
+    var reader = new BufferedReader(new FileReader("C:\\extra_stuff\\ApiTokens\\curseforge_token.txt"))
+    apiKey = reader.readLine()
+    reader.close()
+    project {
+        id = curseforge_id
+        changelog = changelog_text
+        releaseType = release_type
+        addGameVersion("Fabric")
+        addGameVersion("Quilt")
+        addGameVersion("1.20.1")
+        addGameVersion("1.19.4")
+        addGameVersion("1.19.3")
+        addGameVersion("1.19.2")
+        addGameVersion("1.19.1")
+        addGameVersion("1.19")
+        addGameVersion("1.18.2")
+
+        mainArtifact(remapJar.archiveFile) {
+            displayName = published_version_name
+        }
+        afterEvaluate {
+            uploadTask.dependsOn(remapJar)
+        }
+    }
+    curseGradleOptions.forgeGradleIntegration = false
+}
