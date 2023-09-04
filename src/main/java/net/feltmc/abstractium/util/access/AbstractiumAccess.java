@@ -2,22 +2,19 @@ package net.feltmc.abstractium.util.access;
 
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 
-public final class AbstractiumAccess<T> {
-    private final T t;
-    private AbstractiumAccess(T t) {
-        this.t = t;
-    }
-    public T getInstance(AbstractionHandler<?, ?> handler) {
-        try {
-            handler.identityCall();
-            return t;
-        } catch (NullPointerException e) {
-            throw new IllegalCallerException("Trying to access " + t.getClass().getName() + " without " +
-                    "a valid abstraction instance. This is not allowed. Please access it through proper means!");
-        }
-    }
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
-    public static <T> AbstractiumAccess<T> create(T t) {
-        return new AbstractiumAccess<>(t);
+public final class AbstractiumAccess<T, A extends AbstractionHandler<?, ?>> {
+    private final Function<A, T> func;
+    private final Map<A, T> map;
+    public AbstractiumAccess(Function<A, T> func) {
+        this.func = func;
+        this.map = new HashMap<>();
+    }
+    public T getInstance(A handler) {
+        map.putIfAbsent(handler, func.apply(handler));
+        return map.get(handler);
     }
 }

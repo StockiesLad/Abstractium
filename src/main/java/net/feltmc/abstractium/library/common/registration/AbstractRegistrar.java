@@ -1,9 +1,12 @@
 package net.feltmc.abstractium.library.common.registration;
 
+import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandlerProvider;
+import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
+import net.feltmc.abstractium.library.common.AbstractCommonCalls;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
-public interface AbstractRegistrar {
+public interface AbstractRegistrar extends AbstractionHandlerProvider<AbstractCommonCalls, MinecraftEnvironment> {
     void registerBlock();
     void registerItem();
 
@@ -14,5 +17,4 @@ public interface AbstractRegistrar {
     void registerCarver();
 
     void /*RegistryKey<Biome>*/ registerBiome(Identifier identifier, Biome biome);
-
 }

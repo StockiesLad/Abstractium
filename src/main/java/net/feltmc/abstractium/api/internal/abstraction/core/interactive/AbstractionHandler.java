@@ -53,6 +53,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
             throw new UnsupportedOperationException("There are multiple supported abstractions for " + this);
         }
         this.abstraction = supportedAbstractions.get(0);
+        this.abstraction.loadClasses();
 
     }
 
