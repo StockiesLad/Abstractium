@@ -10,10 +10,8 @@ import java.util.List;
 public interface ClientCalls1182 extends AbstractClientCalls {
 
     @Override
-    default String[] getSupportedVersions() {
-        return new String[] {
-                "1.18.2"
-        };
+    default List<String> getSupportedVersions() {
+        return List.of("1.18.2");
     }
 
     @Override

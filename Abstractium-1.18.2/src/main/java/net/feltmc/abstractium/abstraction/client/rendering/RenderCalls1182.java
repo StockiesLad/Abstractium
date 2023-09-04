@@ -14,10 +14,17 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+
 import static com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper.registerModelLayer;
 
 public interface RenderCalls1182 extends AbstractRenderCalls {
     AbstractiumAccess<RenderCalls1182, AbstractionHandler<AbstractClientCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
+
+    @Override
+    default List<String> getSupportedVersions() {
+        return List.of("1.18.2");
+    }
 
     @Override
     default void registerTranslucent(Block block) {

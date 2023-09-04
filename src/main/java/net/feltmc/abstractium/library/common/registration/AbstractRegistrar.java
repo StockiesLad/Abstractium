@@ -1,12 +1,12 @@
 package net.feltmc.abstractium.library.common.registration;
 
-import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandlerProvider;
+import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionApi;
 import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
-public interface AbstractRegistrar extends AbstractionHandlerProvider<AbstractCommonCalls, MinecraftEnvironment> {
+public interface AbstractRegistrar extends AbstractionApi<AbstractCommonCalls, MinecraftEnvironment> {
     void registerBlock();
     void registerItem();
 

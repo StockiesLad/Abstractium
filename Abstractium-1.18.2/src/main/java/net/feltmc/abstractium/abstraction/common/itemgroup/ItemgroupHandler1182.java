@@ -19,6 +19,10 @@ public interface ItemgroupHandler1182 extends AbstractItemgroupHandler {
     AbstractiumAccess<ItemgroupHandler1182, AbstractionHandler<AbstractCommonCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
 
     @Override
+    default List<String> getSupportedVersions() {
+        return List.of("1.18.2");
+    }
+    @Override
     default ItemGroup register(Identifier identifier, ItemStack icon) {
         return FabricItemGroupBuilder.create(identifier).icon(() -> icon).build();
     }

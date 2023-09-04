@@ -1,19 +1,24 @@
 package net.feltmc.abstractium.api.internal.abstraction.core.interactive;
 
-import net.feltmc.abstractium.api.internal.abstraction.core.versioning.SupportedVersions;
+import net.feltmc.abstractium.api.internal.abstraction.core.versioning.VersionUtil;
+import net.feltmc.abstractium.api.internal.abstraction.core.versioning.Versionable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"TypeParameterHidesVisibleType", "unchecked"})
 public interface AbstractionApi<Abstraction extends AbstractionApi<
         Abstraction, Environment>,
         Environment extends Enum<Environment>>
-        extends SupportedVersions, AbstractionHandlerProvider<Abstraction, Environment>
+        extends Versionable
 {
+    AbstractionHandler<Abstraction, Environment> getHandler();
 
-    List<SubAbstractionApi<?>> getSubAbstractions();
+    default List<SubAbstractionApi<?>> getSubAbstractions() {
+        return List.of();
+    }
 
-    default SubAbstractionApi<?> locateSubAbstraction(String className) {
+    default SubAbstractionApi<?> locateSubAbstractions(String className) {
         final var list = getSubAbstractions();
         for (SubAbstractionApi<?> subAbstraction : list)
             if (subAbstraction.getClass().getName().equals(className))
@@ -21,9 +26,29 @@ public interface AbstractionApi<Abstraction extends AbstractionApi<
         throw new NullPointerException("Couldn't find subAbstraction {" + className + "} in {" + list + "}");
     }
 
+    default boolean isEverythingOnCorrectVersion(final VersionUtil versionUtil) {
+        if (isOnCorrectVersion(versionUtil))
+            for (var subAbstraction : getSubAbstractions())
+                if (!subAbstraction.getAbstraction().isEverythingOnCorrectVersion(versionUtil))
+                    return false;
+       return false;
+    }
+
+    default List<AbstractionApi<?, ?>> getOutOfDateAbstractions(final VersionUtil versionUtil) {
+        return getOutOfDateAbstractions(versionUtil, new ArrayList<>());
+    }
+
+    default List<AbstractionApi<?, ?>> getOutOfDateAbstractions(final VersionUtil versionUtil, List<AbstractionApi<?, ?>> outOfDateAbstractions) {
+        if (!this.isOnCorrectVersion(versionUtil)) {
+            outOfDateAbstractions.add(this);
+        }
+        for (var subAbstraction : getSubAbstractions()) {
+            subAbstraction.getAbstraction().getOutOfDateAbstractions(versionUtil, outOfDateAbstractions);
+        }
+        return outOfDateAbstractions;
+    }
+
     default <Abstraction extends AbstractionApi<Abstraction, ?>> Abstraction generify() {
         return (Abstraction) this;
     }
-
-    default void loadClasses() {}
 }

@@ -16,10 +16,8 @@ import java.util.List;
 public interface CommonCalls1182 extends AbstractCommonCalls {
 
     @Override
-    default String[] getSupportedVersions() {
-        return new String[] {
-                "1.18.2"
-        };
+    default List<String> getSupportedVersions() {
+        return List.of("1.18.2");
     }
 
     @Override

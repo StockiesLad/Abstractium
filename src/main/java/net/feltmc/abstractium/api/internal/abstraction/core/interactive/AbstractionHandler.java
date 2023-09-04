@@ -1,7 +1,8 @@
 package net.feltmc.abstractium.api.internal.abstraction.core.interactive;
 
-import net.feltmc.abstractium.api.internal.abstraction.core.versioning.SupportedVersions;
 import net.feltmc.abstractium.api.internal.abstraction.core.versioning.VersionUtil;
+import net.feltmc.abstractium.api.internal.abstraction.core.versioning.Versionable;
+import net.feltmc.abstractium.init.AbstractiumConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,12 +11,13 @@ import java.util.List;
 import static net.fabricmc.loader.api.FabricLoader.getInstance;
 
 @SuppressWarnings({"unchecked", "TypeParameterHidesVisibleType"})
-public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> implements SupportedVersions {
+public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> implements Versionable {
     public final List<String> abstractionModIds;
     public final Environment environment;
     public final String entrypointName;
     public final VersionUtil versionUtil;
     public final Abstraction abstraction;
+    public final List<String> allRegisteredVerions;
 
     public AbstractionHandler(
             final String namespace,
@@ -30,6 +32,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
         this.environment = environment;
         this.entrypointName = entrypointName;
         this.versionUtil = versionUtil;
+        this.allRegisteredVerions = new ArrayList<>();
 
         getInstance().getEntrypointContainers(entrypointName, AbstractionEntrypoint.class)
                 .forEach(container -> abstractionModIds.forEach(abstractionModId -> {
@@ -39,53 +42,36 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
                         entrypoint.register(abstractions, this);
                     }
                 }));
+        abstractions.forEach(abstraction -> allRegisteredVerions.addAll(abstraction.getSupportedVersions()));
 
         List<Abstraction> supportedAbstractions = new ArrayList<>();
         for (Abstraction supportedAbstraction : abstractions) {
-            if (isSupported(supportedAbstraction))
+            if (supportedAbstraction.isOnCorrectVersion(versionUtil))
                 supportedAbstractions.add(supportedAbstraction);
         }
 
         if (supportedAbstractions.size() == 0) {
-            throw new NullPointerException("There aren't any supported abstractions for " + this);
+            throw new NullPointerException("There aren't any supported abstractions for (" + this + "). REGISTERED_" +
+                    "CANDIDATES={" + abstractions +"}");
         }
         if (supportedAbstractions.size() > 1) {
             throw new UnsupportedOperationException("There are multiple supported abstractions for " + this);
         }
+
         this.abstraction = supportedAbstractions.get(0);
-        this.abstraction.loadClasses();
 
-    }
+        final var outOfDateAbstractions = abstraction.getOutOfDateAbstractions(versionUtil);
+        if (!outOfDateAbstractions.isEmpty())
+            throw new NullPointerException("Sub-abstractions are not up to date! BROKEN_ABSTRACTIONS={" +
+                    outOfDateAbstractions +"}");
 
-    public String getVersion() {
-        return versionUtil.providedVersion;
-    }
-
-    public boolean isSupported(final String[] supportedVersions) {
-        for (String supportedVersion : supportedVersions)
-            if (versionUtil.matchesAny(supportedVersion))
-                return true;
-        return false;
-    }
-
-    public boolean isSupported() {
-        return isSupported(getSupportedVersions());
-    }
-
-    public boolean isSupported(final Abstraction abstraction) {
-        return isSupported(getSupportedVersions(abstraction));
+        AbstractiumConstants.LOGGER.info("Successfully registered abstraction: " + this);
     }
 
     @Override
-    public String[] getSupportedVersions() {
+    public List<String> getSupportedVersions() {
         return abstraction.getSupportedVersions();
     }
-
-    public String[] getSupportedVersions(final Abstraction abstraction) {
-        return abstraction.getSupportedVersions();
-    }
-
-    public void identityCall() {}
 
     public <Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>>
     AbstractionHandler<Abstraction, Environment> generify() {
@@ -96,6 +82,6 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
     public String toString() {
         return "AbstractionHandler[Env={" + environment.name() +"}, EntrypointName={" + entrypointName +"}, " +
                 "EntrypointModIds={" + Arrays.toString(abstractionModIds.toArray()) + "}, VersionUtil={" +
-                versionUtil + "}]@" + hashCode();
+                versionUtil + "}, AllRegisteredVersions={" + allRegisteredVerions + "}]@" + hashCode();
     }
 }

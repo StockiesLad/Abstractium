@@ -8,8 +8,16 @@ import net.feltmc.abstractium.util.access.AbstractiumAccess;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
+import java.util.List;
+
 public interface Registrar1182 extends AbstractRegistrar {
     AbstractiumAccess<Registrar1182, AbstractionHandler<AbstractCommonCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
+
+    @Override
+    default List<String> getSupportedVersions() {
+        return List.of("1.18.2");
+    }
+
     @Override
     default void registerBlock() {
 

@@ -17,13 +17,13 @@ public class VersionConstants {
 
 
     static {
-        IS_MINECRAFT_1201 = MINECRAFT.matchesAny("1.21");
-        IS_MINECRAFT_1200 = MINECRAFT.matchesAny("1.20");
-        IS_MINECRAFT_1194 = MINECRAFT.matchesAny( "1.19.4");
-        IS_MINECRAFT_1193 = MINECRAFT.matchesAny( "1.19.3");
-        IS_MINECRAFT_1192 = MINECRAFT.matchesAny( "1.19.2");
-        IS_MINECRAFT_1191 = MINECRAFT.matchesAny( "1.19.1");
-        IS_MINECRAFT_1190 = MINECRAFT.matchesAny("1.19");
-        IS_MINECRAFT_1182 = MINECRAFT.matchesAny( "1.18.2");
+        IS_MINECRAFT_1201 = MINECRAFT.matches("1.21");
+        IS_MINECRAFT_1200 = MINECRAFT.matches("1.20");
+        IS_MINECRAFT_1194 = MINECRAFT.matches( "1.19.4");
+        IS_MINECRAFT_1193 = MINECRAFT.matches( "1.19.3");
+        IS_MINECRAFT_1192 = MINECRAFT.matches( "1.19.2");
+        IS_MINECRAFT_1191 = MINECRAFT.matches( "1.19.1");
+        IS_MINECRAFT_1190 = MINECRAFT.matches("1.19");
+        IS_MINECRAFT_1182 = MINECRAFT.matches( "1.18.2");
     }
 }

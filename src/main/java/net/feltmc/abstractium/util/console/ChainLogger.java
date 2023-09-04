@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class ChainLogger {
-    private final SideEffect
+    public final SideEffect
             DEBUG,
             ERROR,
             INFO,
@@ -22,14 +22,14 @@ public final class ChainLogger {
         WARN = internalLogger::warn;
     }
 
-    private ChainLogger base(final SideEffect type, final String[] messages) {
+    private ChainLogger custom(final SideEffect type, final String... messages) {
         for (final String message : messages)
             type.action(message);
         return this;
     }
 
     public ChainLogger log(SideEffect sideEffect, final String... messages) {
-        return base(sideEffect, messages);
+        return custom(sideEffect, messages);
     }
 
     public ChainLogger debug(final String... messages) {

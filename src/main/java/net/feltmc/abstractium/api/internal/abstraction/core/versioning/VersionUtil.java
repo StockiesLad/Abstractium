@@ -27,10 +27,10 @@ public class VersionUtil {
 
     @Override
     public String toString() {
-        return "VersionHelper.GameSpecific[id=" + gameId +",version= " + providedVersion +"]" + hashCode();
+        return "VersionUtil[GameID={" + gameId +"}, Version={" + providedVersion +"}]@" + hashCode();
     }
 
-    public boolean matchesAny(
+    public boolean matches(
             final String comparedVersion,
             final MatchingStrategy matchingStrategy,
             final ExceptionStrategy exceptionStrategy
@@ -38,23 +38,23 @@ public class VersionUtil {
         return matchingStrategy.function.apply(providedVersion, comparedVersion) && exceptionStrategy.function.apply(providedVersion);
     }
 
-    public boolean matchesAny(
+    public boolean matches(
             final String comparedVersion,
             final MatchingStrategy matchingStrategy
     ) {
-        return matchesAny(comparedVersion, matchingStrategy, defaultException);
+        return matches(comparedVersion, matchingStrategy, defaultException);
     }
 
-    public boolean matchesAny(
+    public boolean matches(
             final String comparedVersion,
             final ExceptionStrategy exceptionStrategy
     ) {
-        return matchesAny(comparedVersion, defaultMatchingStrategy, exceptionStrategy);
+        return matches(comparedVersion, defaultMatchingStrategy, exceptionStrategy);
     }
 
-    public boolean matchesAny(
+    public boolean matches(
             final String comparedVersion
     ) {
-        return matchesAny(comparedVersion, defaultMatchingStrategy, defaultException);
+        return matches(comparedVersion, defaultMatchingStrategy, defaultException);
     }
 }
