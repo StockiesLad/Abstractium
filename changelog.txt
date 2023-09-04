@@ -1,4 +1,7 @@
--Added framework for implementation.
+- Added framework for implementation via terrains.
+- Rewrote many many things.
+- Fix mistakes
+- Add delegation abilities for abstraction to organise code.
 
 ----------
 
