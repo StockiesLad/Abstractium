@@ -15,7 +15,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
     public final List<String> abstractionModIds;
     public final Environment environment;
     public final String abstractionEntrypointName;
-    public final String initEntrypointName;
+    public final String earlyInitEntrypointName;
     public final VersionUtil versionUtil;
     public final Abstraction abstraction;
     public final List<String> allRegisteredVersions;
@@ -29,7 +29,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
         this.abstractionModIds = abstractionModIds;
         this.environment = environment;
         this.abstractionEntrypointName = namespace.toLowerCase() + "_" + environment.name().toLowerCase();
-        this.initEntrypointName = namespace + "_early_init";
+        this.earlyInitEntrypointName = namespace + "_early_init";
         this.versionUtil = versionUtil;
         this.allRegisteredVersions = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
             throw new NullPointerException("Sub-abstractions are not up to date! BROKEN_ABSTRACTIONS={" +
                     outOfDateAbstractions +"}");
 
-        FabricLoader.getInstance().getEntrypoints(initEntrypointName, AbstractiumEarlyInit.class)
+        FabricLoader.getInstance().getEntrypoints(earlyInitEntrypointName, AbstractiumEarlyInit.class)
                 .forEach(abstractiumEarlyInit -> abstractiumEarlyInit.init(this));
 
         AbstractiumConstants.LOGGER.info("Successfully registered abstraction: " + this);
@@ -83,8 +83,13 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
 
     @Override
     public String toString() {
-        return "AbstractionHandler[Env={" + environment.name() +"}, EntrypointName={" + abstractionEntrypointName +"}, " +
-                "EntrypointModIds={" + Arrays.toString(abstractionModIds.toArray()) + "}, VersionUtil={" +
-                versionUtil + "}, AllRegisteredVersions={" + allRegisteredVersions + "}]@" + hashCode();
+        return "AbstractionHandler[" +
+                    "Environment={" + environment.name() +"}, " +
+                    "EarlyInitEntrypointName={" + earlyInitEntrypointName + "}, " +
+                    "AbstractionEntrypointName={" + abstractionEntrypointName +"}, " +
+                    "EntrypointModIds={" + Arrays.toString(abstractionModIds.toArray()) + "}, " +
+                    "VersionUtil={" + versionUtil + "}, " +
+                    "AllRegisteredVersions={" + allRegisteredVersions + "}" +
+                "]@" + hashCode();
     }
 }
