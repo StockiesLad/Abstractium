@@ -13,7 +13,11 @@ modrinth {
     versionName = "${project.mod_name}-${project.version}"
     versionType = release_type
     changelog = changelog_text
-    uploadFile = file("build//libs//${project.archivesBaseName}-${project.version}.jar")
+    uploadFile = file(remapJar.archiveFile)
+    additionalFiles = List.of(
+            file("Abstractium-1.18.2//build//libs//${project.archivesBaseName}-1.18.2-${project.version}.jar"),
+            file("Abstractium-Libraries-1.18.2//build//libs//${project.libraries_archives_base_name}-1.18.2-${project.mod_libraries_version}.jar")
+    )
 
     /*afterEvaluate {
         if (plugins.hasPlugin("io.github.p03w.machete"))

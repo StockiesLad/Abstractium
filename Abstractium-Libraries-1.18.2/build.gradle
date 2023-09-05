@@ -1,4 +1,4 @@
-archivesBaseName = "AbstractLibraries-1.18.2"
+archivesBaseName = "$project.libraries_archives_base_name-1.18.2"
 version = project.mod_libraries_version
 loom {
 }
