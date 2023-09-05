@@ -1,7 +1,5 @@
-package net.feltmc.abstractium.api.external.abstraction;
+package net.feltmc.abstractium.api.internal.abstraction.core.interactive;
 
-import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionApi;
-import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 import net.feltmc.abstractium.api.internal.abstraction.core.versioning.VersionUtil;
 import net.feltmc.abstractium.api.internal.abstraction.def.VersionUtils;
 

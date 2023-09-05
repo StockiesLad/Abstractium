@@ -17,7 +17,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
     public final String entrypointName;
     public final VersionUtil versionUtil;
     public final Abstraction abstraction;
-    public final List<String> allRegisteredVerions;
+    public final List<String> allRegisteredVersions;
 
     public AbstractionHandler(
             final String namespace,
@@ -32,7 +32,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
         this.environment = environment;
         this.entrypointName = entrypointName;
         this.versionUtil = versionUtil;
-        this.allRegisteredVerions = new ArrayList<>();
+        this.allRegisteredVersions = new ArrayList<>();
 
         getInstance().getEntrypointContainers(entrypointName, AbstractionEntrypoint.class)
                 .forEach(container -> abstractionModIds.forEach(abstractionModId -> {
@@ -42,7 +42,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
                         entrypoint.register(abstractions, this);
                     }
                 }));
-        abstractions.forEach(abstraction -> allRegisteredVerions.addAll(abstraction.getSupportedVersions()));
+        abstractions.forEach(abstraction -> allRegisteredVersions.addAll(abstraction.getSupportedVersions()));
 
         List<Abstraction> supportedAbstractions = new ArrayList<>();
         for (Abstraction supportedAbstraction : abstractions) {
@@ -82,6 +82,6 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
     public String toString() {
         return "AbstractionHandler[Env={" + environment.name() +"}, EntrypointName={" + entrypointName +"}, " +
                 "EntrypointModIds={" + Arrays.toString(abstractionModIds.toArray()) + "}, VersionUtil={" +
-                versionUtil + "}, AllRegisteredVersions={" + allRegisteredVerions + "}]@" + hashCode();
+                versionUtil + "}, AllRegisteredVersions={" + allRegisteredVersions + "}]@" + hashCode();
     }
 }

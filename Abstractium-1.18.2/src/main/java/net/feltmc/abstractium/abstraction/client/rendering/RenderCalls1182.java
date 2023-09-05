@@ -1,5 +1,6 @@
 package net.feltmc.abstractium.abstraction.client.rendering;
 
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
@@ -15,8 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
-
-import static com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper.registerModelLayer;
 
 public interface RenderCalls1182 extends AbstractRenderCalls {
     AbstractiumAccess<RenderCalls1182, AbstractionHandler<AbstractClientCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
@@ -53,7 +52,7 @@ public interface RenderCalls1182 extends AbstractRenderCalls {
     }
 
     @Override
-    default void registerBoat(Identifier name) {
-        registerModelLayer(name);
+    default void registerBoats(Identifier name) {
+        TerraformBoatClientHelper.registerModelLayer(name);
     }
 }

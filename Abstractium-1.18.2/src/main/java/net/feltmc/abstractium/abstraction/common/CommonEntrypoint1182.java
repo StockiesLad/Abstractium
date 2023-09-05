@@ -9,7 +9,7 @@ import java.util.List;
 public class CommonEntrypoint1182 implements AbstractionEntrypoint {
 
     @Override
-    public <Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> void register(List<Abstraction> abstractions, AbstractionHandler<Abstraction, Environment> parent) {
-        abstractions.add(((CommonCalls1182) parent::generify).generify());
+    public <Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> void register(List<Abstraction> abstractions, AbstractionHandler<Abstraction, Environment> handler) {
+        abstractions.add(((CommonCalls1182) handler::generify).generify());
     }
 }

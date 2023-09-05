@@ -12,5 +12,6 @@ dependencies {
     modImplementation "com.terraformersmc.terraform-api:terraform-tree-api-v1:${project.terraform_api_version_1182}"
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_api_version_1182}"
     modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_api_version_1182}"
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:1.18.2-${project.terrablender_version_1182}"
     //modImplementation "com.terraformersmc:modmenu:${project.modmenu_1192}"
 }

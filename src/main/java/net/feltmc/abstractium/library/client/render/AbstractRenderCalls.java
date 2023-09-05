@@ -13,6 +13,6 @@ public interface AbstractRenderCalls extends AbstractionApi<AbstractClientCalls,
     void registerCutout(final Block block);
     void registerCutout(final Item item);
     void registerSign(Identifier texture);
-    void registerBoat(Identifier name);
+    void registerBoats(Identifier name);
 
 }
