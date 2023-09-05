@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
-import net.feltmc.abstractium.library.common.registration.FakeRegistryEntry;
+import net.feltmc.abstractium.library.common.IdentifiableMimic;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractStructureGenerator;
 import net.feltmc.abstractium.util.access.AbstractiumAccess;
@@ -14,6 +14,8 @@ import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.List;
+
+import static net.feltmc.abstractium.library.common.CommonMimicTypes.*;
 
 @SuppressWarnings("unchecked")
 public interface StructureGenerator1182 extends AbstractStructureGenerator {
@@ -25,13 +27,15 @@ public interface StructureGenerator1182 extends AbstractStructureGenerator {
     }
 
     @Override
-    default void generateCarver(FakeRegistryEntry<ConfiguredCarver<?>> carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
-        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, (RegistryKey<ConfiguredCarver<?>>) carver);
+    default void generateCarver(IdentifiableMimic carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
+        carver.verify(registryEntry(configuredCarver(any())));
+        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, (RegistryKey<ConfiguredCarver<?>>) carver.mimic().instance());
     }
 
     @Override
-    default void generateFeature(FakeRegistryEntry<PlacedFeature> feature, AbstractBiomes predicate, GenerationStep.Feature featureStep) {
-        BiomeModifications.addFeature(BiomeModificationMutator.mutate(predicate), featureStep, (RegistryKey<PlacedFeature>) feature);
+    default void generateFeature(IdentifiableMimic feature, AbstractBiomes predicate, GenerationStep.Feature featureStep) {
+        feature.verify(registryEntry(placedFeature()));
+        BiomeModifications.addFeature(BiomeModificationMutator.mutate(predicate), featureStep, (RegistryKey<PlacedFeature>) feature.mimic().instance());
 
     }
 }

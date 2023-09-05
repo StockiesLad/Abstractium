@@ -8,10 +8,8 @@ import com.terraformersmc.terraform.tree.placer.PlacerTypes;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
-import net.feltmc.abstractium.library.common.IdentifiableObject;
+import net.feltmc.abstractium.library.common.IdentifiableMimic;
 import net.feltmc.abstractium.library.common.registration.AbstractRegistrar;
-import net.feltmc.abstractium.library.common.registration.FakeRegistryEntry;
-import net.feltmc.abstractium.library.common.registration.FakeRegistryKey;
 import net.feltmc.abstractium.util.access.AbstractiumAccess;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -38,9 +36,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static net.feltmc.abstractium.library.common.CommonMimicTypes.*;
 import static net.minecraft.util.registry.BuiltinRegistries.CONFIGURED_FEATURE;
 
-@SuppressWarnings({"DataFlowIssue", "unchecked"})
+@SuppressWarnings({"unchecked"})
 public interface Registrar1182 extends AbstractRegistrar {
     AbstractiumAccess<Registrar1182, AbstractionHandler<AbstractCommonCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
 
@@ -62,9 +61,9 @@ public interface Registrar1182 extends AbstractRegistrar {
     }
 
     @Override
-    default void registerBoat(Identifier identifier, Item boat, Consumer<Item> returnValue) {
+    default void registerBoat(Identifier identifier, Item boat, Consumer<Item> itemConsumer) {
         Supplier<TerraformBoatType> type = () -> () -> boat;
-        returnValue.accept(TerraformBoatItemHelper.registerBoatItem(identifier, type));
+        itemConsumer.accept(TerraformBoatItemHelper.registerBoatItem(identifier, type));
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, identifier, type.get());
     }
 
@@ -84,13 +83,14 @@ public interface Registrar1182 extends AbstractRegistrar {
     }
 
     @Override
-    default <FC extends FeatureConfig, F extends Feature<FC>> IdentifiableObject<FakeRegistryEntry<ConfiguredFeature<FC, ?>>> registerConfiguredFeature(Identifier identifier, F feature, FC config) {
-        return new IdentifiableObject<> (identifier, (FakeRegistryEntry<ConfiguredFeature<FC,?>>) (Object) Registry.register(CONFIGURED_FEATURE, identifier, new ConfiguredFeature<>(feature, config)));
+    default <FC extends FeatureConfig, F extends Feature<FC>> IdentifiableMimic registerConfiguredFeature(Identifier identifier, F feature, FC config) {
+        return IdentifiableMimic.create(identifier, registryEntry(configuredFeature(any(), any())), Registry.register(CONFIGURED_FEATURE, identifier, new ConfiguredFeature<>(feature, config)));
     }
 
     @Override
-    default IdentifiableObject<FakeRegistryEntry<PlacedFeature>> registerPlacedFeature(Identifier identifier, FakeRegistryEntry<? extends ConfiguredFeature<?, ?>> registryEntry, List<PlacementModifier> modifiers) {
-        return new IdentifiableObject<>(identifier, (FakeRegistryEntry<PlacedFeature>) BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature((RegistryEntry<ConfiguredFeature<?, ?>>) registryEntry, modifiers)));
+    default IdentifiableMimic registerPlacedFeature(Identifier identifier, IdentifiableMimic configuredFeatureRegistryEntry, List<PlacementModifier> modifiers) {
+        configuredFeatureRegistryEntry.verify(registryEntry(configuredFeature(any(), any())));
+        return IdentifiableMimic.create(identifier, registryEntry(placedFeature()), BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature((RegistryEntry<ConfiguredFeature<?, ?>>) configuredFeatureRegistryEntry.mimic().instance(), modifiers)));
     }
 
     @Override
@@ -99,14 +99,14 @@ public interface Registrar1182 extends AbstractRegistrar {
     }
 
     @Override
-    default IdentifiableObject<FakeRegistryEntry<ConfiguredCarver<?>>> registerCarverConfig(Identifier identifier, ConfiguredCarver<?> configuredCarver) {
-        return new IdentifiableObject<>(identifier, (FakeRegistryEntry<ConfiguredCarver<?>>) BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_CARVER, identifier, configuredCarver));
+    default IdentifiableMimic registerCarverConfig(Identifier identifier, ConfiguredCarver<?> configuredCarver) {
+        return IdentifiableMimic.create(identifier, registryEntry(configuredCarver(any())), BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_CARVER, identifier, configuredCarver));
     }
 
     @Override
-    default IdentifiableObject<FakeRegistryKey<Biome>> registerBiome(Identifier identifier, Biome biome) {
+    default IdentifiableMimic registerBiome(Identifier identifier, Biome biome) {
         RegistryKey<Biome> key = RegistryKey.of(Registry.BIOME_KEY, identifier);
         BuiltinRegistries.add(BuiltinRegistries.BIOME, key, biome);
-        return new IdentifiableObject<>(identifier, (FakeRegistryKey<Biome>) key);
+        return IdentifiableMimic.create(identifier, registryKey(biome()), key);
     }
 }

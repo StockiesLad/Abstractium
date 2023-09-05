@@ -1,3 +1,7 @@
+- Rewrote the fake typing to use generic Mimic.java instead.
+
+----------
+
 - Added framework for implementation via terrains.
 - Rewrote many many things.
 - Fixed mistakes
