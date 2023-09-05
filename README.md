@@ -33,7 +33,7 @@ allow for "sub-abstraction", where a subset of specific calls can reside. Here i
 The **Minecraft Abstraction** puts all this together to provide an inbuilt abstraction layer for other mods
 to use. Please keep in mind that this is far from finished. There is a bare minimum to get my mods ported to
 it but that's about it. If you feel like contributing, just keep in mind that I'll only accept abstractions
-that world for all inbuilt versions this api supports.
+that work for all inbuilt versions this api supports.
 
 # How do I use this?
 Well if you do want to use my inbuilt minecraft abstraction, it's actually really easy! Just add my mod
