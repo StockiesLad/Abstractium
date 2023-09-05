@@ -1,5 +1,7 @@
 package net.feltmc.abstractium.api.internal.abstraction.core.interactive;
 
+import net.fabricmc.loader.api.FabricLoader;
+import net.feltmc.abstractium.api.external.abstraction.init.AbstractiumEarlyInit;
 import net.feltmc.abstractium.api.internal.abstraction.core.versioning.VersionUtil;
 import net.feltmc.abstractium.api.internal.abstraction.core.versioning.Versionable;
 import net.feltmc.abstractium.init.AbstractiumConstants;
@@ -8,13 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.fabricmc.loader.api.FabricLoader.getInstance;
-
 @SuppressWarnings({"unchecked", "TypeParameterHidesVisibleType"})
 public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstraction, Environment>, Environment extends Enum<Environment>> implements Versionable {
     public final List<String> abstractionModIds;
     public final Environment environment;
-    public final String entrypointName;
+    public final String abstractionEntrypointName;
+    public final String initEntrypointName;
     public final VersionUtil versionUtil;
     public final Abstraction abstraction;
     public final List<String> allRegisteredVersions;
@@ -25,16 +26,15 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
             final Environment environment,
             final VersionUtil versionUtil
     ) {
-        final List<Abstraction> abstractions = new ArrayList<>();
-        final String entrypointName = namespace.toLowerCase() + "_" + environment.name().toLowerCase();
-
         this.abstractionModIds = abstractionModIds;
         this.environment = environment;
-        this.entrypointName = entrypointName;
+        this.abstractionEntrypointName = namespace.toLowerCase() + "_" + environment.name().toLowerCase();
+        this.initEntrypointName = namespace + "_early_init";
         this.versionUtil = versionUtil;
         this.allRegisteredVersions = new ArrayList<>();
 
-        getInstance().getEntrypointContainers(entrypointName, AbstractionEntrypoint.class)
+        final List<Abstraction> abstractions = new ArrayList<>();
+        FabricLoader.getInstance().getEntrypointContainers(abstractionEntrypointName, AbstractionEntrypoint.class)
                 .forEach(container -> abstractionModIds.forEach(abstractionModId -> {
                     if (container.getProvider().getMetadata().getId().equals(abstractionModId)) {
                         final var entrypoint = container.getEntrypoint();
@@ -65,6 +65,9 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
             throw new NullPointerException("Sub-abstractions are not up to date! BROKEN_ABSTRACTIONS={" +
                     outOfDateAbstractions +"}");
 
+        FabricLoader.getInstance().getEntrypoints(initEntrypointName, AbstractiumEarlyInit.class)
+                .forEach(abstractiumEarlyInit -> abstractiumEarlyInit.init(this));
+
         AbstractiumConstants.LOGGER.info("Successfully registered abstraction: " + this);
     }
 
@@ -80,7 +83,7 @@ public final class AbstractionHandler<Abstraction extends AbstractionApi<Abstrac
 
     @Override
     public String toString() {
-        return "AbstractionHandler[Env={" + environment.name() +"}, EntrypointName={" + entrypointName +"}, " +
+        return "AbstractionHandler[Env={" + environment.name() +"}, EntrypointName={" + abstractionEntrypointName +"}, " +
                 "EntrypointModIds={" + Arrays.toString(abstractionModIds.toArray()) + "}, VersionUtil={" +
                 versionUtil + "}, AllRegisteredVersions={" + allRegisteredVersions + "}]@" + hashCode();
     }

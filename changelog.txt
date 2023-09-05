@@ -1,7 +1,8 @@
 - Added framework for implementation via terrains.
 - Rewrote many many things.
-- Fix mistakes
-- Add delegation abilities for abstraction to organise code.
+- Fixed mistakes
+- Added delegation abilities for abstraction to organise code.
+- Added Early Init for abstraction.
 
 ----------
 
