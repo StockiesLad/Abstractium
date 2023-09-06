@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.common.worldgen.structure;
+package net.feltmc.abstractium.abstraction_1182.common.worldgen.structure;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;

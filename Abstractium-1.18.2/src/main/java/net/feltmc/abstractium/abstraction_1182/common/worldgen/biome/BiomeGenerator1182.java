@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.common.worldgen.biome;
+package net.feltmc.abstractium.abstraction_1182.common.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;

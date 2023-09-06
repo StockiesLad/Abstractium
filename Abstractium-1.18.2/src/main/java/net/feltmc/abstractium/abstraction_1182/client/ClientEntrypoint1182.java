@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.client;
+package net.feltmc.abstractium.abstraction_1182.client;
 
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionApi;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionEntrypoint;

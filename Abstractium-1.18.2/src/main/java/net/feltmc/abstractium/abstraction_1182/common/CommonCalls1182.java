@@ -1,9 +1,9 @@
-package net.feltmc.abstractium.abstraction.common;
+package net.feltmc.abstractium.abstraction_1182.common;
 
-import net.feltmc.abstractium.abstraction.common.itemgroup.ItemgroupHandler1182;
-import net.feltmc.abstractium.abstraction.common.registration.Registrar1182;
-import net.feltmc.abstractium.abstraction.common.worldgen.biome.BiomeGenerator1182;
-import net.feltmc.abstractium.abstraction.common.worldgen.structure.StructureGenerator1182;
+import net.feltmc.abstractium.abstraction_1182.common.itemgroup.ItemgroupHandler1182;
+import net.feltmc.abstractium.abstraction_1182.common.registration.Registrar1182;
+import net.feltmc.abstractium.abstraction_1182.common.worldgen.biome.BiomeGenerator1182;
+import net.feltmc.abstractium.abstraction_1182.common.worldgen.structure.StructureGenerator1182;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.SubAbstractionApi;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
 import net.feltmc.abstractium.library.common.itemgroup.AbstractItemgroupHandler;

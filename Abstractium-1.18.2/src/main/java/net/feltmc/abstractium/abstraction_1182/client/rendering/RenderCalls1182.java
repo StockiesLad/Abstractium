@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.client.rendering;
+package net.feltmc.abstractium.abstraction_1182.client.rendering;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;

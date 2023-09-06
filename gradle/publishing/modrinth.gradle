@@ -16,7 +16,6 @@ modrinth {
     uploadFile = file(remapJar.archiveFile)
     additionalFiles = List.of(
             file("Abstractium-1.18.2//build//libs//${project.archivesBaseName}-1.18.2-${project.version}.jar"),
-            file("Abstractium-Libraries-1.18.2//build//libs//${project.libraries_archives_base_name}-1.18.2-${project.mod_libraries_version}.jar")
     )
 
     /*afterEvaluate {

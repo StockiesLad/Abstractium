@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.common.itemgroup;
+package net.feltmc.abstractium.abstraction_1182.common.itemgroup;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;

@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.common.registration;
+package net.feltmc.abstractium.abstraction_1182.common.registration;
 
 import com.mojang.serialization.Codec;
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;

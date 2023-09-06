@@ -1,3 +1,7 @@
+- Changed package for 1.18.2 abstraction.
+
+----------
+
 - Rewrote the fake typing to use generic Mimic.java instead.
 
 ----------

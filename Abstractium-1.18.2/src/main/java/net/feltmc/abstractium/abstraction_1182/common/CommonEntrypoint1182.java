@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.abstraction.common;
+package net.feltmc.abstractium.abstraction_1182.common;
 
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionApi;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionEntrypoint;

@@ -1,6 +1,6 @@
-package net.feltmc.abstractium.abstraction.client;
+package net.feltmc.abstractium.abstraction_1182.client;
 
-import net.feltmc.abstractium.abstraction.client.rendering.RenderCalls1182;
+import net.feltmc.abstractium.abstraction_1182.client.rendering.RenderCalls1182;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.SubAbstractionApi;
 import net.feltmc.abstractium.library.client.AbstractClientCalls;
 import net.feltmc.abstractium.library.client.render.AbstractRenderCalls;
