@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.feltmc.abstractium.init.AbstractiumCommon"
+      "net.feltmc.${modid}.init.AbstractiumCommon"
     ],
     "client" : [
-      "net.feltmc.abstractium.init.AbstractiumClient"
+      "net.feltmc.${modid}.init.AbstractiumClient"
     ]
   },
   "depends": {

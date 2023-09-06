@@ -1,3 +1,7 @@
+- Fixed entrypoint for 1.18.2 abstraction.
+
+----------
+
 - Changed package for 1.18.2 abstraction.
 
 ----------

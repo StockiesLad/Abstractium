@@ -21,10 +21,10 @@
   "environment": "*",
   "entrypoints": {
     "${modid}_client": [
-      "net.feltmc.abstractium.abstraction.client.ClientEntrypoint1182"
+      "net.feltmc.${modid}.abstraction_1182.client.ClientEntrypoint1182"
     ],
     "${modid}_common": [
-      "net.feltmc.abstractium.abstraction.common.CommonEntrypoint1182"
+      "net.feltmc.${modid}.abstraction_1182.common.CommonEntrypoint1182"
     ]
   },
   "mixins": [],
