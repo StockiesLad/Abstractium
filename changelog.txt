@@ -1,3 +1,7 @@
+- Fixed casting type for Registrar1182.
+
+----------
+
 - Fixed entrypoint for 1.18.2 abstraction.
 
 ----------

@@ -28,13 +28,13 @@ public interface StructureGenerator1182 extends AbstractStructureGenerator {
 
     @Override
     default void generateCarver(IdentifiableMimic carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
-        carver.verify(registryEntry(configuredCarver(any())));
+        carver.verify(registryKey(configuredCarver(any())));
         BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, (RegistryKey<ConfiguredCarver<?>>) carver.mimic().instance());
     }
 
     @Override
     default void generateFeature(IdentifiableMimic feature, AbstractBiomes predicate, GenerationStep.Feature featureStep) {
-        feature.verify(registryEntry(placedFeature()));
+        feature.verify(registryKey(placedFeature()));
         BiomeModifications.addFeature(BiomeModificationMutator.mutate(predicate), featureStep, (RegistryKey<PlacedFeature>) feature.mimic().instance());
 
     }
