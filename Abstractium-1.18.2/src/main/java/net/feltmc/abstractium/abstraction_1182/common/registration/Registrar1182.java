@@ -49,7 +49,7 @@ public interface Registrar1182 extends AbstractRegistrar {
     @Override
     default Mimic getKeyFromEntry(Mimic registryEntry) {
         final RegistryKey<?> registryKey = registryEntry.<RegistryEntry<?>>cast(registryEntry(wildcard())).getKey().orElseThrow();
-        return new Mimic(registryKey.getValue(), registryEntry.objectType(), registryKey);
+        return new Mimic(registryKey.getValue(), registryKey(registryEntry.objectType().getGeneric(0)), registryKey);
     }
 
     @SuppressWarnings("DataFlowIssue")

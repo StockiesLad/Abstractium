@@ -1,3 +1,7 @@
+- Fixed incorrect type on Registrar1182
+
+----------
+
 - Fixed incorrect type on StructureGenerator1182
 
 ----------

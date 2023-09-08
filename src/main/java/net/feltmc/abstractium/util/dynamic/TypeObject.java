@@ -143,6 +143,23 @@ public final class TypeObject {
         return name.equals("?");
     }
 
+    public TypeObject getParent(int index) {
+        return parents.get(index);
+    }
+
+    public int getAmountOfParents() {
+        return parents.size();
+    }
+
+    public TypeObject getGeneric(int index) {
+        return generics.get(index);
+    }
+
+    public int getAmountOfGenerics() {
+        return generics.size();
+    }
+
+
     public String asString() {
         StringBuilder type = new StringBuilder(name);
         if (!this.generics.isEmpty()) {
