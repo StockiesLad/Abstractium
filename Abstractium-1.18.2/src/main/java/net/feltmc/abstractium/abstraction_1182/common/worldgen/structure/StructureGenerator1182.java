@@ -24,7 +24,7 @@ public interface StructureGenerator1182 extends AbstractStructureGenerator {
 
     @Override
     default void generateCarver(Mimic carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
-        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, carver.cast(configuredCarver(wildcard())));
+        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, carver.cast(registryKey(configuredCarver(wildcard()))));
     }
 
     @Override
