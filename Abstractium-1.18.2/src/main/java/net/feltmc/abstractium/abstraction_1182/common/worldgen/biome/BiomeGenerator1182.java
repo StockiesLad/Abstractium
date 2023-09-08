@@ -19,10 +19,9 @@ import terrablender.api.Regions;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static net.feltmc.abstractium.library.common.CommonMimicTypes.biome;
-import static net.feltmc.abstractium.library.common.CommonMimicTypes.registryKey;
+import static net.feltmc.abstractium.library.common.CommonTypeObjects.biome;
+import static net.feltmc.abstractium.library.common.CommonTypeObjects.registryKey;
 
-@SuppressWarnings("unchecked")
 public interface BiomeGenerator1182 extends AbstractBiomeGenerator {
     AbstractiumAccess<BiomeGenerator1182, AbstractionHandler<AbstractCommonCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
 
@@ -37,8 +36,7 @@ public interface BiomeGenerator1182 extends AbstractBiomeGenerator {
             @Override
             public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
                 for (AbstractBiomeGenerationInfo info : biomes) {
-                    info.fakeBiomeKey().verify(registryKey(biome()));
-                    addBiome(mapper, info.noiseHypercube(), (RegistryKey<Biome>) info.fakeBiomeKey().mimic().instance());
+                    addBiome(mapper, info.noiseHypercube(), info.biomeKey().cast(registryKey(biome())));
                 }
             }
         });

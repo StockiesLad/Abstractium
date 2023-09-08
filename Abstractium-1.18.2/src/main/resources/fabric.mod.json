@@ -27,7 +27,9 @@
       "net.feltmc.${modid}.abstraction_1182.common.CommonEntrypoint1182"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "abstractium_1182.mixins.json"
+  ],
   "depends": {
     "fabricloader": "*",
     "minecraft": "*",

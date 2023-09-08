@@ -4,20 +4,16 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
-import net.feltmc.abstractium.library.common.IdentifiableMimic;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractStructureGenerator;
 import net.feltmc.abstractium.util.access.AbstractiumAccess;
-import net.minecraft.util.registry.RegistryKey;
+import net.feltmc.abstractium.util.dynamic.Mimic;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.List;
 
-import static net.feltmc.abstractium.library.common.CommonMimicTypes.*;
+import static net.feltmc.abstractium.library.common.CommonTypeObjects.*;
 
-@SuppressWarnings("unchecked")
 public interface StructureGenerator1182 extends AbstractStructureGenerator {
     AbstractiumAccess<StructureGenerator1182, AbstractionHandler<AbstractCommonCalls, MinecraftEnvironment>> ACCESS = new AbstractiumAccess<>(handler -> () -> handler);
 
@@ -27,15 +23,12 @@ public interface StructureGenerator1182 extends AbstractStructureGenerator {
     }
 
     @Override
-    default void generateCarver(IdentifiableMimic carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
-        carver.verify(registryKey(configuredCarver(any())));
-        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, (RegistryKey<ConfiguredCarver<?>>) carver.mimic().instance());
+    default void generateCarver(Mimic carver, AbstractBiomes context, GenerationStep.Carver carverStep) {
+        BiomeModifications.addCarver(BiomeModificationMutator.mutate(context), carverStep, carver.cast(configuredCarver(wildcard())));
     }
 
     @Override
-    default void generateFeature(IdentifiableMimic feature, AbstractBiomes predicate, GenerationStep.Feature featureStep) {
-        feature.verify(registryKey(placedFeature()));
-        BiomeModifications.addFeature(BiomeModificationMutator.mutate(predicate), featureStep, (RegistryKey<PlacedFeature>) feature.mimic().instance());
-
+    default void generateFeature(Mimic feature, AbstractBiomes predicate, GenerationStep.Feature featureStep) {
+        BiomeModifications.addFeature(BiomeModificationMutator.mutate(predicate), featureStep, feature.cast(registryKey(placedFeature())));
     }
 }

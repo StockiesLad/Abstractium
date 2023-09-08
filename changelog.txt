@@ -1,3 +1,9 @@
+- Changed string types to TypeObject.java
+- Refactor all mimics to be identifiable not just by Identifier.java
+- TypeObject failsafes will print exactly where the issue is.
+
+----------
+
 - Fixed casting type for Registrar1182.
 
 ----------
