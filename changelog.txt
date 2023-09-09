@@ -1,3 +1,7 @@
+- Fixed Feature Registration AGAIN.
+
+----------
+
 - Fix Feature Creation/Registration methods.
 - Removed SubAbstractionApi as it causes bloat.
 

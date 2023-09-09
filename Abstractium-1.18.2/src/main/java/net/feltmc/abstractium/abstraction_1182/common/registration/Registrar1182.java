@@ -106,7 +106,7 @@ public interface Registrar1182 extends AbstractRegistrar {
         return new Mimic(
                 identifier,
                 registryEntry(configuredFeature.objectType()),
-                Registry.register(
+                BuiltinRegistries.add(
                         CONFIGURED_FEATURE,
                         identifier,
                         configuredFeature.cast(configuredFeature(wildcard(), wildcard()))
