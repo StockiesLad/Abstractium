@@ -28,11 +28,24 @@ public interface StructureCreator1182 extends AbstractStructureCreator {
 
     @Override
     default <FC extends FeatureConfig, F extends Feature<FC>> Mimic createConfiguredFeature(FC featureConfig, F feature) {
-        return new Mimic("StructureCreator1182#createConfiguredFeature," + featureConfig + feature, configuredFeature(ofWildcard(of("FeatureConfig")), ofWildcard(ofGenerics("Feature", of("FeatureConfig")))), new ConfiguredFeature<>(feature, featureConfig));
+        return new Mimic(
+                featureConfig.toString() + feature,
+                configuredFeature(ofWildcard(of("FeatureConfig")), ofWildcard(ofGenerics("Feature", of("FeatureConfig")))),
+                new ConfiguredFeature<>(
+                        feature, featureConfig
+                )
+        );
     }
 
     @Override
     default Mimic createPlacedFeature(Mimic configuredFeatureRegistryEntry, List<PlacementModifier> modifiers) {
-        return new Mimic("StructureCreator1182#createPlacedFeature," + configuredFeatureRegistryEntry, of("PlacedFeature"), new PlacedFeature(configuredFeatureRegistryEntry.cast(registryEntry(configuredFeature(ofWildcard(), ofWildcard()))), modifiers));
+        return new Mimic(
+                configuredFeatureRegistryEntry.toString(),
+                of("PlacedFeature"),
+                new PlacedFeature(
+                        configuredFeatureRegistryEntry.cast(registryEntry(configuredFeature(ofWildcard(), ofWildcard()))),
+                        modifiers
+                )
+        );
     }
 }

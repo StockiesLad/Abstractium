@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"TypeParameterHidesVisibleType", "unchecked"})
-public interface AbstractionApi<Abstraction extends AbstractionApi<
-        Abstraction, Environment>,
+public interface AbstractionApi<
+        Abstraction extends AbstractionApi<Abstraction, Environment>,
         Environment extends Enum<Environment>>
         extends Versionable
 {
     AbstractionHandler<Abstraction, Environment> getHandler();
 
-    default List<SubAbstractionApi<?>> getSubAbstractions() {
+    default List<AbstractionApi<?, ?>> getSubAbstractions() {
         return List.of();
     }
 
-    default SubAbstractionApi<?> locateSubAbstractions(String className) {
+    default AbstractionApi<?, ?> locateSubAbstractions(String className) {
         final var list = getSubAbstractions();
-        for (SubAbstractionApi<?> subAbstraction : list)
+        for (AbstractionApi<?, ?> subAbstraction : list)
             if (subAbstraction.getClass().getName().equals(className))
                 return subAbstraction;
         throw new NullPointerException("Couldn't find subAbstraction {" + className + "} in {" + list + "}");
@@ -29,7 +29,7 @@ public interface AbstractionApi<Abstraction extends AbstractionApi<
     default boolean isEverythingOnCorrectVersion(final VersionUtil versionUtil) {
         if (isOnCorrectVersion(versionUtil))
             for (var subAbstraction : getSubAbstractions())
-                if (!subAbstraction.getAbstraction().isEverythingOnCorrectVersion(versionUtil))
+                if (!subAbstraction.isEverythingOnCorrectVersion(versionUtil))
                     return false;
        return false;
     }
@@ -43,7 +43,7 @@ public interface AbstractionApi<Abstraction extends AbstractionApi<
             outOfDateAbstractions.add(this);
         }
         for (var subAbstraction : getSubAbstractions()) {
-            subAbstraction.getAbstraction().getOutOfDateAbstractions(versionUtil, outOfDateAbstractions);
+            subAbstraction.getOutOfDateAbstractions(versionUtil, outOfDateAbstractions);
         }
         return outOfDateAbstractions;
     }

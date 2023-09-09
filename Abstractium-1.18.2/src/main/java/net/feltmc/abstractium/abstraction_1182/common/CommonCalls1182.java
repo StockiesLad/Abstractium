@@ -5,7 +5,6 @@ import net.feltmc.abstractium.abstraction_1182.common.registration.Registrar1182
 import net.feltmc.abstractium.abstraction_1182.common.worldgen.biome.BiomeGenerator1182;
 import net.feltmc.abstractium.abstraction_1182.common.worldgen.structure.StructureCreator1182;
 import net.feltmc.abstractium.abstraction_1182.common.worldgen.structure.StructureGenerator1182;
-import net.feltmc.abstractium.api.internal.abstraction.core.interactive.SubAbstractionApi;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
 import net.feltmc.abstractium.library.common.itemgroup.AbstractItemgroupHandler;
 import net.feltmc.abstractium.library.common.registration.AbstractRegistrar;
@@ -23,38 +22,27 @@ public interface CommonCalls1182 extends AbstractCommonCalls {
     }
 
     @Override
-    default List<SubAbstractionApi<?>> getSubAbstractions() {
-        return List.of(
-                getRegistrar(),
-                getItemgroupHandler(),
-                getStructureGenerator(),
-                getStructureCreator(),
-                getBiomeGenerator()
-        );
+    default AbstractRegistrar getRegistrar() {
+        return Registrar1182.ACCESS.getInstance(getHandler());
     }
 
     @Override
-    default SubAbstractionApi<AbstractRegistrar> getRegistrar() {
-        return () -> Registrar1182.ACCESS.getInstance(getHandler());
+    default AbstractItemgroupHandler getItemgroupHandler() {
+        return ItemgroupHandler1182.ACCESS.getInstance(getHandler());
     }
 
     @Override
-    default SubAbstractionApi<AbstractItemgroupHandler> getItemgroupHandler() {
-        return () -> ItemgroupHandler1182.ACCESS.getInstance(getHandler());
+    default AbstractStructureGenerator getStructureGenerator() {
+        return StructureGenerator1182.ACCESS.getInstance(getHandler());
     }
 
     @Override
-    default SubAbstractionApi<AbstractStructureGenerator> getStructureGenerator() {
-        return () -> StructureGenerator1182.ACCESS.getInstance(getHandler());
+    default AbstractStructureCreator getStructureCreator() {
+        return StructureCreator1182.ACCESS.getInstance(getHandler());
     }
 
     @Override
-    default SubAbstractionApi<AbstractStructureCreator> getStructureCreator() {
-        return () -> StructureCreator1182.ACCESS.getInstance(getHandler());
-    }
-
-    @Override
-    default SubAbstractionApi<AbstractBiomeGenerator> getBiomeGenerator() {
-        return () -> BiomeGenerator1182.ACCESS.getInstance(getHandler());
+    default AbstractBiomeGenerator getBiomeGenerator() {
+        return BiomeGenerator1182.ACCESS.getInstance(getHandler());
     }
 }

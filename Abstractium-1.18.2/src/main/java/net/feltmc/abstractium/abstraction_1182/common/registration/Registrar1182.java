@@ -15,18 +15,17 @@ import net.feltmc.abstractium.util.dynamic.Mimic;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.*;
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.Carver;
 import net.minecraft.world.gen.carver.CarverConfig;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
@@ -49,7 +48,11 @@ public interface Registrar1182 extends AbstractRegistrar {
     @Override
     default Mimic getKeyFromEntry(Mimic registryEntry) {
         final RegistryKey<?> registryKey = registryEntry.<RegistryEntry<?>>cast(registryEntry(wildcard())).getKey().orElseThrow();
-        return new Mimic(registryKey.getValue(), registryKey(registryEntry.objectType().getGeneric(0)), registryKey);
+        return new Mimic(
+                registryKey.getValue(),
+                registryKey(registryEntry.objectType().getGeneric(0)),
+                registryKey
+        );
     }
 
     @SuppressWarnings("DataFlowIssue")
@@ -94,18 +97,34 @@ public interface Registrar1182 extends AbstractRegistrar {
     }
 
     @Override
-    default <FC extends FeatureConfig, F extends Feature<FC>> F registerFeature(Identifier identifier , F feature) {
+    default <F extends Feature<?>> F registerFeature(Identifier identifier , F feature) {
         return Registry.register(Registry.FEATURE, identifier, feature);
     }
 
     @Override
-    default <FC extends FeatureConfig, F extends Feature<FC>> Mimic registerConfiguredFeature(Identifier identifier, F feature, FC config) {
-        return new Mimic(identifier, registryEntry(configuredFeature(wildcard(), wildcard())), Registry.register(CONFIGURED_FEATURE, identifier, new ConfiguredFeature<>(feature, config)));
+    default Mimic registerConfiguredFeature(Identifier identifier, Mimic configuredFeature) {
+        return new Mimic(
+                identifier,
+                registryEntry(configuredFeature.objectType()),
+                Registry.register(
+                        CONFIGURED_FEATURE,
+                        identifier,
+                        configuredFeature.cast(configuredFeature(wildcard(), wildcard()))
+                )
+        );
     }
 
     @Override
-    default Mimic registerPlacedFeature(Identifier identifier, Mimic configuredFeatureRegistryEntry, List<PlacementModifier> modifiers) {
-        return new Mimic(identifier, registryEntry(placedFeature()), BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature(configuredFeatureRegistryEntry.cast(registryEntry(configuredFeature(wildcard(), wildcard()))), modifiers)));
+    default Mimic registerPlacedFeature(Identifier identifier, Mimic placedFeature) {
+        return new Mimic(
+                identifier,
+                registryEntry(placedFeature()),
+                BuiltinRegistries.add(
+                        BuiltinRegistries.PLACED_FEATURE,
+                        identifier,
+                        placedFeature.cast(placedFeature())
+                )
+        );
     }
 
     @Override
@@ -115,13 +134,30 @@ public interface Registrar1182 extends AbstractRegistrar {
 
     @Override
     default Mimic registerCarverConfig(Identifier identifier, ConfiguredCarver<?> configuredCarver) {
-        return new Mimic(identifier, registryEntry(configuredCarver(wildcard())), BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_CARVER, identifier, configuredCarver));
+        return new Mimic(
+                identifier,
+                registryEntry(configuredCarver(wildcard())),
+                BuiltinRegistries.add(
+                        BuiltinRegistries.CONFIGURED_CARVER,
+                        identifier,
+                        configuredCarver
+                )
+        );
     }
 
     @Override
     default Mimic registerBiome(Identifier identifier, Biome biome) {
-        RegistryKey<Biome> key = RegistryKey.of(Registry.BIOME_KEY, identifier);
-        BuiltinRegistries.add(BuiltinRegistries.BIOME, key, biome);
-        return new Mimic(identifier, registryKey(biome()), key);
+        return new Mimic(
+                identifier,
+                registryEntry(biome()),
+                BuiltinRegistries.add(
+                        BuiltinRegistries.BIOME,
+                        RegistryKey.of(
+                                Registry.BIOME_KEY,
+                                identifier
+                        ),
+                        biome
+                )
+        );
     }
 }

@@ -13,14 +13,11 @@ import net.minecraft.world.gen.carver.Carver;
 import net.minecraft.world.gen.carver.CarverConfig;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public interface AbstractRegistrar extends AbstractionApi<AbstractCommonCalls, MinecraftEnvironment> {
@@ -31,9 +28,9 @@ public interface AbstractRegistrar extends AbstractionApi<AbstractCommonCalls, M
     void registerBoat(Identifier identifier, Item boat, Consumer<Item> returnValue);
     <P extends TrunkPlacer> TrunkPlacerType<P> registerTrunkPlacer(Identifier identifier, Codec<P> placerCodec);
     <P extends FoliagePlacer> FoliagePlacerType<P> registerFoliagePlacer(Identifier identifier, Codec<P> placerCodec);
-    <FC extends FeatureConfig, F extends Feature<FC>> F registerFeature(Identifier identifier, F feature);
-    <FC extends FeatureConfig, F extends Feature<FC>> Mimic registerConfiguredFeature(Identifier identifier, F feature, FC config);
-    Mimic registerPlacedFeature(Identifier identifier, Mimic configuredFeatureRegistryEntry, List<PlacementModifier> modifiers);
+    <F extends Feature<?>> F registerFeature(Identifier identifier, F feature);
+    Mimic registerConfiguredFeature(Identifier identifier, Mimic configuredFeature);
+    Mimic registerPlacedFeature(Identifier identifier, Mimic placedFeature);
     <CC extends CarverConfig> Carver<CC> registerCarver(Identifier identifier, Carver<CC> carver);
     Mimic registerCarverConfig(Identifier identifier, ConfiguredCarver<?> configuredCarver);
     Mimic registerBiome(Identifier identifier, Biome biome);

@@ -1,7 +1,6 @@
 package net.feltmc.abstractium.abstraction_1182.client;
 
 import net.feltmc.abstractium.abstraction_1182.client.rendering.RenderCalls1182;
-import net.feltmc.abstractium.api.internal.abstraction.core.interactive.SubAbstractionApi;
 import net.feltmc.abstractium.library.client.AbstractClientCalls;
 import net.feltmc.abstractium.library.client.render.AbstractRenderCalls;
 
@@ -15,12 +14,7 @@ public interface ClientCalls1182 extends AbstractClientCalls {
     }
 
     @Override
-    default List<SubAbstractionApi<?>> getSubAbstractions() {
-        return List.of(getRenderCalls());
-    }
-
-    @Override
-    default SubAbstractionApi<AbstractRenderCalls> getRenderCalls() {
-        return () -> RenderCalls1182.ACCESS.getInstance(getHandler());
+    default AbstractRenderCalls getRenderCalls() {
+        return RenderCalls1182.ACCESS.getInstance(getHandler());
     }
 }

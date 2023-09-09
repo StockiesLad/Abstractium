@@ -1,3 +1,7 @@
+- Fix Feature Creation/Registration methods.
+
+----------
+
 - Added a StructureCreator with configured and placed features.
 
 ----------
