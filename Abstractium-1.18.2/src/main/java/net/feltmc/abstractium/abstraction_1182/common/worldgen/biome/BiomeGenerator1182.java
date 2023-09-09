@@ -6,7 +6,7 @@ import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
 import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomeGenerationInfo;
 import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomeGenerator;
-import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
+import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomes;
 import net.feltmc.abstractium.util.access.AbstractiumAccess;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

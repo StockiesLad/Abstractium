@@ -1,10 +1,11 @@
 package net.feltmc.abstractium.abstraction_1182.common.worldgen.structure;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.feltmc.abstractium.abstraction_1182.common.worldgen.biome.BiomeModificationMutator;
 import net.feltmc.abstractium.api.internal.abstraction.core.interactive.AbstractionHandler;
 import net.feltmc.abstractium.api.internal.abstraction.def.MinecraftEnvironment;
 import net.feltmc.abstractium.library.common.AbstractCommonCalls;
-import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
+import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomes;
 import net.feltmc.abstractium.library.common.worldgen.structure.AbstractStructureGenerator;
 import net.feltmc.abstractium.util.access.AbstractiumAccess;
 import net.feltmc.abstractium.util.dynamic.Mimic;

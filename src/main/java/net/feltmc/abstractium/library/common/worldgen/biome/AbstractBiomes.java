@@ -1,4 +1,4 @@
-package net.feltmc.abstractium.library.common.worldgen.structure;
+package net.feltmc.abstractium.library.common.worldgen.biome;
 
 public enum AbstractBiomes {
     OVERWORLD,

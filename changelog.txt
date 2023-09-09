@@ -1,3 +1,7 @@
+- Added a StructureCreator with configured and placed features.
+
+----------
+
 - Fixed incorrect type on Registrar1182
 
 ----------

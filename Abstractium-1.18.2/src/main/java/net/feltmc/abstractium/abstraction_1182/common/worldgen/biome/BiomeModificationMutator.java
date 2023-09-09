@@ -1,7 +1,7 @@
-package net.feltmc.abstractium.abstraction_1182.common.worldgen.structure;
+package net.feltmc.abstractium.abstraction_1182.common.worldgen.biome;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
+import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomes;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.dimension.DimensionOptions;
 

@@ -1,6 +1,6 @@
 package net.feltmc.abstractium.abstraction_1182.common.worldgen.biome;
 
-import net.feltmc.abstractium.library.common.worldgen.structure.AbstractBiomes;
+import net.feltmc.abstractium.library.common.worldgen.biome.AbstractBiomes;
 import terrablender.api.RegionType;
 
 public class TerrablenderBiomeMutator {
